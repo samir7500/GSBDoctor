@@ -1,59 +1,87 @@
-# Gsbrapportsvisites
+# GSBDoctor
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.8.
+Documentation principale du projet GSBDoctor (application Angular légère pour afficher et rechercher des médecins).
 
-## Development server
+## Aperçu
 
-To start a local development server, run:
+GSBDoctor est une petite application Angular qui charge une liste de médecins depuis `assets/doctors.json` et les affiche via un composant `DoctorCard`. La page principale `DoctorsPage` propose un champ de recherche qui filtre la liste en direct (par nom, spécialité, email ou adresse).
 
-```bash
-ng serve
+## Stack technique
+
+- Framework: Angular (version utilisée dans le projet)
+- Langage: TypeScript
+- Bundler / CLI: Angular CLI
+- Tests: configuration basique (`ng test` / Karma) — voir `package.json`
+
+## Fonctions principales
+
+- Charger la liste des médecins depuis `assets/doctors.json` (via `DoctorsService`).
+- Afficher chaque médecin avec le composant `app-doctor-card`.
+- Champ de recherche réactif qui filtre par nom, spécialité, email et adresse.
+
+## Prérequis
+
+- Node.js (LTS recommandé) et `npm`.
+
+## Installation et exécution (développement)
+
+Ouvrez PowerShell (ou un terminal) à la racine du projet puis :
+
+```powershell
+npm install
+npm start
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+La commande `npm start` démarre le serveur de développement (tâche configurée dans `package.json`). Ouvrez `http://localhost:4200/` pour voir l'application.
 
-## Code scaffolding
+## Tests
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Pour lancer les tests unitaires :
 
-```bash
-ng generate component component-name
+```powershell
+npm test
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Structure du projet (rapide)
 
-```bash
-ng generate --help
-```
+Principal dossier de travail : `src/`
 
-## Building
+- `src/app/pages/doctors-page/` : page listant les médecins (`doctors-page.ts`, `doctors-page.html`, `doctors-page.css`).
+- `src/app/components/doctor-card/` : composant réutilisable pour afficher un médecin.
+- `src/app/services/doctors.service.ts` : service pour charger et convertir les données.
+- `src/app/types/` : interfaces TypeScript (`Doctor`, `Medecin`).
+- `src/assets/doctors.json` : fichier de données local utilisé en développement.
 
-To build the project run:
+Une documentation plus détaillée est fournie dans le répertoire `docs/`.
 
-```bash
-ng build
-```
+## Développement et bonnes pratiques
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- Les composants sont en mode standalone Angular (importés directement dans le composant qui les utilise).
+- Le code utilise des signaux (`signal`, `computed`, `toSignal`) pour la réactivité.
+- Respectez le style TypeScript déjà présent : évitez les changements de style massifs.
 
-## Running unit tests
+## Recherche (fonctionnalité)
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+La page des médecins propose un champ de recherche : tapez un nom, une spécialité, un email ou une adresse et la liste se filtre en temps réel. Le filtrage est insensible à la casse et combine prénom + nom pour la recherche sur nom complet.
 
-```bash
-ng test
-```
+## Ajouter/modifier des médecins
 
-## Running end-to-end tests
+- Modifiez `src/assets/doctors.json` pour ajouter ou éditer des entrées (respectez le format utilisé).
+- Le service `DoctorsService` convertit les objets `Medecin` du JSON en `Doctor` via le helper `convert-medecin-to-doctor`.
 
-For end-to-end (e2e) testing, run:
+## Contribution
 
-```bash
-ng e2e
-```
+1. Créez une branche feature/issue
+2. Faites vos changements et tests locaux
+3. Ouvrez une Pull Request décrivant vos changements
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Fichiers de documentation
 
-## Additional Resources
+- `docs/structure.md` : arborescence et description rapide des dossiers.
+- `docs/development.md` : instructions détaillées pour le développement local.
+- `docs/api.md` : description des services, composants et types.
+- `docs/usage.md` : exemples d'utilisation et notes sur la recherche.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Licence
+
+Ajoutez ici la licence de votre projet si nécessaire (ex : `MIT`).
