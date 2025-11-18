@@ -4,6 +4,19 @@
   gap: 1rem;
 }
 
+.doctors-search {
+  margin: 0 0 1rem 0;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
 @media (max-width: 1200px) {
   .doctors-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));

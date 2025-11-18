@@ -1,6 +1,17 @@
 <p>doctors-page works!</p>
+
+<div class="doctors-search">
+  <input
+    class="search-input"
+    type="search"
+    placeholder="Rechercher par nom, spécialité, email, adresse..."
+    [value]="searchTerm()"
+    (input)="searchTerm.set($any($event.target).value)"
+  />
+</div>
+
 <section class="doctors-grid">
-  @for (doctor of doctors(); track doctor.id) {
+  @for (doctor of filteredDoctors(); track doctor.id) {
     <app-doctor-card [doctor]="doctor" ></app-doctor-card>
   }
 </section>
