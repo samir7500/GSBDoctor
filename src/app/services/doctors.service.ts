@@ -10,9 +10,9 @@ export class DoctorsService {
   private httpClient = inject(HttpClient);  
   
   getDoctors(): Observable<Doctor[]> {
-    return this.httpClient.get<Medecin[]>('assets/doctors.json')
+    return this.httpClient.get<{ medecins: Medecin[] }>('http://restsecufinal.test/medecins?nom=')
       .pipe(
-		      map((medecins) => medecins.map(convertMedecinToDoctor))
+		      map((result) => result.medecins.map(convertMedecinToDoctor))
       );  
   }
 }
